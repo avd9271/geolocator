@@ -19,9 +19,11 @@ class PostgresClient:
         self.cursor = self.connection.cursor()
 
     def execute_query_and_return_results(self, query):
+        print("Running query {}".format(query))
+
         try:
             self.cursor.execute(query)
-            print("Sucessfully executed query: {}".format(query))
+            print("Sucessfully executed query")
         except Exception as e:
             message = "Error running SQL query: {}".format(str(e))
             raise PostgresClientQueryException(message)
@@ -33,7 +35,7 @@ class PostgresClient:
         output = ""
         # cycle through results and add to output string
         for row in results:
-            for i in range(1, len(row)):
+            for i in range(0, len(row)):
                 output += str(row[i]) + "\t"
             output += "\n"
         return output
