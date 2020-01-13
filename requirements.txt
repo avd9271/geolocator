@@ -1,1 +1,4 @@
+flask
 pyshp
+psycopg2
+geopy
