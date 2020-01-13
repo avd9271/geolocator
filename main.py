@@ -88,4 +88,4 @@ def find_state_from_latitude_longitude(latitude, longitude):
     return format_str_for_html(result_str)
     
 if __name__ == '__main__':
-    app.run()
+    app.run(host="0.0.0.0",port="80")
