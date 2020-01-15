@@ -13,6 +13,7 @@ class PostgresClient:
             print("Connection to SQL server successful")
         except Exception as e:
             message = "Error connecting to SQL server: {}".format(str(e))
+            print(message)
             raise PostgresClientConnectionException(message)
 
         # set cursor

@@ -14,3 +14,4 @@ QUERY_FOLDER = ROOT_DIR + "/resources/queries/"
     
 # Postgres connection string:
 LOCAL_CONNECTION_STRING = "dbname='geolocator' user='postgres' host='localhost' password='postgres'"
+DOCKER_CONNECTION_STRING = "dbname='postgres' user='postgres' host='localhost' password=''"
