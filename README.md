@@ -42,6 +42,12 @@ once you have your container built run the command:
 
 `docker run -p 80:80 --name yourcontainername yourusername/postgresgeolocator`
 
+once the service is up and running, you can use the internal ip of the docker container to access the application.
+
+use the `/find-state-of-lat-lon` endpoint with url parameter `address` to input an address and get a state as a response.
+
+e.g. `my-docker-ip/find-state-of-lat-lon?address="My address"`
+
 ---- NOTES ----
 
 PROJECT HICCUPS:
