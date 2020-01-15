@@ -2,7 +2,7 @@
 from flask import Flask, request
 # PROJECT
 import config
-from scripts.postgresclient.postgres_client import PostgresClient
+from scripts.postgresclient.postgres_client import PostgresClient, PostgresClientConnectionException
 from scripts.queryparser.query_parser import *
 from scripts.addressparser.address_parser import *
 
@@ -14,11 +14,23 @@ app = Flask(__name__)
 def index():
     return "Welcome to basic geolocator program!"
 
+@app.route('/test-postgres-connection')
+def run_test_postgres_connection():
+
+    connection_string = config.DOCKER_CONNECTION_STRING
+
+    try:
+        pg_client = PostgresClient(connection_string)
+    except PostgresClientConnectionException as e:
+        return "Could not connect to sql server. Error: {}".format(e.message)
+    
+    return "Connection successful!"
+
 @app.route('/run-NC-test')
 def run_NC_test():
     # constants:
     query_file = 'postgis_test_no_geo_column.sql'
-    connection_string = config.LOCAL_CONNECTION_STRING
+    connection_string = config.DOCKER_CONNECTION_STRING
     
     # init postgres client:
     pg_client = PostgresClient(connection_string)
@@ -68,7 +80,7 @@ def run_address_state():
 def find_state_from_latitude_longitude(latitude, longitude):
     # constants:
     query_file = 'find_state_from_lat_lon.sql'
-    connection_string = config.LOCAL_CONNECTION_STRING
+    connection_string = config.DOCKER_CONNECTION_STRING
     params = {'${LONGITUDE}': longitude, '${LATITUDE}': latitude}
 
     """ probably need to move this bit to a generic location """
