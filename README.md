@@ -54,4 +54,6 @@ The geo data is loaded on container run, which could cause issues if the process
 
 There are docker images out there of postgis-enabled postgresql server instances. I opted to build one from scratch as this was my first time working with Docker. Many headaches later, I got it to work, but it probably would have been smarter to use one of the pre-existing images.
 
+In a non-interview setting, I would normally have way more test cases. Currently there is no 'tests' folder in my repo. Note that this is generally bad practice, but again there was a bit of a time crunch.
+
 -----------------
